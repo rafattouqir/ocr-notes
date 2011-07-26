@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name">PLUG Notes</string>
+  <string name="snap_label">Snap</string>
+  <string name="search_label">Search</string>
+  <string name="about_label">About</string>
+  <string name="about_text">This app is about STFU</string>
+  <string name="camera_button_label">Snap</string>
+  <string name="camera_label">Take a screenshot</string>
+</resources>
