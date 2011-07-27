@@ -152,7 +152,6 @@ public class DoodleActivity extends GraphicsActivity {
 	    } else {
 	      mPaint.setMaskFilter(null);
 	    }
-	    
 	    return true;
 	  case BLUR_MENU_ID:
 	    if (mPaint.getMaskFilter() != mBlur) {
