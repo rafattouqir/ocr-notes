@@ -34,17 +34,17 @@ public class DatabaseAdapter {
   private static final int DATABASE_VERSION = 1;
   
   private static final String DATABASE_CREATE_SUBJECT = 
-	"CREATE TABLE IF NOT EXISTS subjects " +
-	"(_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-	"title TEXT NOT NULL);";
+		"CREATE TABLE IF NOT EXISTS subjects " +
+		"(_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+		"title TEXT NOT NULL);";
   
   private static final String DATABASE_CREATE_NOTE = 
-	"CREATE TABLE IF NOT EXISTS notes " +
-	"(_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-	"title TEXT NOT NULL, content TEXT NOT NULL, subject_id INTEGER);"; 
+		"CREATE TABLE IF NOT EXISTS notes " +
+		"(_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+		"title TEXT NOT NULL, content TEXT NOT NULL, subject_id INTEGER);"; 
   
   private static final String[] DATABASE_CREATE_TABLES = {
-	DATABASE_CREATE_SUBJECT, DATABASE_CREATE_NOTE};
+		DATABASE_CREATE_SUBJECT, DATABASE_CREATE_NOTE};
   
   
   private final Context context;
@@ -52,98 +52,97 @@ public class DatabaseAdapter {
   private SQLiteDatabase plugDB;
  
   public DatabaseAdapter(Context context) {
-	this.context = context;
-	DBHelper = new DatabaseHelper(this.context);
+		this.context = context;
+		DBHelper = new DatabaseHelper(this.context);
   }
   
   /*
    * Database Helper for SQLite; opening ang closing
    */
   private static class DatabaseHelper extends SQLiteOpenHelper {
+		
+		DatabaseHelper(Context context ) {
+		  super(context, DATABASE_NAME, null, DATABASE_VERSION);
+		}
 	
-	DatabaseHelper(Context context ) {
-	  super(context, DATABASE_NAME, null, DATABASE_VERSION);
-	}
-
-	@Override
-	public void onCreate(SQLiteDatabase db) {
-	  for(String sql : DATABASE_CREATE_TABLES)
-		db.execSQL(sql);
-	}
-
-	@Override
-	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-	  db.execSQL("DROP TABLE IF EXISTS subjects;");
-	  db.execSQL("DROP TABLE IF EXISTS notes;");
-	  onCreate(db);
-	}
+		@Override
+		public void onCreate(SQLiteDatabase db) {
+		  for(String sql : DATABASE_CREATE_TABLES)
+			db.execSQL(sql);
+		}
 	
+		@Override
+		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+		  db.execSQL("DROP TABLE IF EXISTS subjects;");
+		  db.execSQL("DROP TABLE IF EXISTS notes;");
+		  onCreate(db);
+		}
   }
   
   public DatabaseAdapter open () throws SQLException {
-	Log.i(TAG, "Opening PLUG database...");
-	plugDB = DBHelper.getWritableDatabase();
-	return this;
+		Log.i(TAG, "Opening PLUG database...");
+		plugDB = DBHelper.getWritableDatabase();
+		return this;
   }
   
   public void close() {
-	Log.i(TAG, "Closing PLUG database...");
-	DBHelper.close();
+		Log.i(TAG, "Closing PLUG database...");
+		DBHelper.close();
   }
   
   /* Creating a note with a subject*/
   public long createNote(String title, String content, int subject_id) {
-	ContentValues cv = new ContentValues();
-	cv.put(KEY_NOTE_TITLE, title);
-	cv.put(KEY_NOTE_CONTENT, content);
-	cv.put(KEY_NOTE_SUBJECT, subject_id);
-	
-	return plugDB.insert(DATABASE_TABLE_NOTE, null, cv); 
+		ContentValues cv = new ContentValues();
+		cv.put(KEY_NOTE_TITLE, title);
+		cv.put(KEY_NOTE_CONTENT, content);
+		cv.put(KEY_NOTE_SUBJECT, subject_id);
+		
+		return plugDB.insert(DATABASE_TABLE_NOTE, null, cv); 
   }  
   
   /* Creating a note without a subject */
   public long createNote(String title, String content) {
-	ContentValues cv = new ContentValues();
-	cv.put(KEY_NOTE_TITLE, title);
-	cv.put(KEY_NOTE_CONTENT, content);
-	
-	return plugDB.insert(DATABASE_TABLE_NOTE, null, cv); 
+		ContentValues cv = new ContentValues();
+		cv.put(KEY_NOTE_TITLE, title);
+		cv.put(KEY_NOTE_CONTENT, content);
+		
+		return plugDB.insert(DATABASE_TABLE_NOTE, null, cv); 
   } 
   
   /* Retrieve all notes */
   public Cursor getAllNotes() {
-	return plugDB.query(DATABASE_TABLE_NOTE, new String[] {
-		KEY_NOTE_ID, 
-		KEY_NOTE_TITLE, 
-		KEY_NOTE_CONTENT, 
-		KEY_NOTE_SUBJECT
-	},
-		null,
-		null,
-		null,
-		null,
-		null);
+		return plugDB.query(DATABASE_TABLE_NOTE, new String[] {
+			KEY_NOTE_ID, 
+			KEY_NOTE_TITLE, 
+			KEY_NOTE_CONTENT, 
+			KEY_NOTE_SUBJECT
+		},
+			null,
+			null,
+			null,
+			null,
+			null);
   }
   
   /* Retrieve a single note */
   public Cursor getNote(long id) {
-	return plugDB.query(DATABASE_TABLE_NOTE, new String[]{
-		KEY_NOTE_CONTENT, KEY_NOTE_TITLE }, 
-		KEY_NOTE_ID + "=" + id, 
-		null, 
-		null, 
-		null, 
-		null);
+		return plugDB.query(DATABASE_TABLE_NOTE, new String[]{
+			KEY_NOTE_CONTENT, KEY_NOTE_TITLE }, 
+			KEY_NOTE_ID + "=" + id, 
+			null, 
+			null, 
+			null, 
+			null);
   }
   
   public void updateNote(long id, String title, String content) {
-	ContentValues cv = new ContentValues();
-	cv.put(KEY_NOTE_TITLE, title);
-	cv.put(KEY_NOTE_CONTENT, content);
-	
-	plugDB.update(DATABASE_TABLE_NOTE,
-		cv,
-		KEY_NOTE_ID + "=?",
-		new String[] {Long.toString(id)});
-  }
+		ContentValues cv = new ContentValues();
+		cv.put(KEY_NOTE_TITLE, title);
+		cv.put(KEY_NOTE_CONTENT, content);
+		
+		plugDB.update(DATABASE_TABLE_NOTE,
+			cv,
+			KEY_NOTE_ID + "=?",
+			new String[] {Long.toString(id)});
+	}
 }

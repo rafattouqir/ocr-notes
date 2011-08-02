@@ -38,22 +38,22 @@ public class HomeActivity extends Activity implements OnClickListener {
 
   @Override
   public void onClick(View v) {
-	switch(v.getId()) {
-	  case R.id.home_captureNote:
-		startActivity(new Intent(HomeActivity.this, CameraActivity.class));
-		break;
-	  case R.id.home_about:
-		startActivity(new Intent(HomeActivity.this, AboutActivity.class));
-		break;
-	  case R.id.home_myNotebook:
-		startActivity(new Intent(HomeActivity.this, NotesListActivity.class));
-		break;
-	  case R.id.home_writeNote:
-		Intent mIntent = new Intent();
-		mIntent.setAction(Intent.ACTION_INSERT);
-		mIntent.setClass(HomeActivity.this, NoteEditorActivity.class);
-		startActivity(mIntent);
-		break;
-	}
+		switch(v.getId()) {
+		  case R.id.home_captureNote:
+				startActivity(new Intent(HomeActivity.this, CameraActivity.class));
+				break;
+		  case R.id.home_about:
+				startActivity(new Intent(HomeActivity.this, AboutActivity.class));
+				break;
+		  case R.id.home_myNotebook:
+				startActivity(new Intent(HomeActivity.this, NotesListActivity.class));
+				break;
+		  case R.id.home_writeNote:
+				Intent mIntent = new Intent();
+				mIntent.setAction(Intent.ACTION_INSERT);
+				mIntent.setClass(HomeActivity.this, NoteEditorActivity.class);
+				startActivity(mIntent);
+				break;
+		}
   }
 }

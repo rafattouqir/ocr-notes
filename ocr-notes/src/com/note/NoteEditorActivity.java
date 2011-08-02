@@ -74,82 +74,86 @@ public class NoteEditorActivity extends Activity {
 
 	  /* Drawing a line underneath the rows */
 	  for (int i = 0; i < count; i++) {
-		int baseline = getLineBounds(i, r);
-		canvas.drawLine(r.left, baseline + 1, r.right, baseline + 1, paint);
+			int baseline = getLineBounds(i, r);
+			canvas.drawLine(r.left, baseline + 1, r.right, baseline + 1, paint);
 	  }
 	  super.onDraw(canvas);
-	}
+		}
   } 
   
   public void onCreate(Bundle savedInstanceState) {
-	super.onCreate(savedInstanceState);
+		super.onCreate(savedInstanceState);
+		
+		/** Get the intent (either insert new note or edit existing */
+		final Intent intent = getIntent();
+		String action = intent.getAction();
 	
-	/** Get the intent (either insert new note or edit existing */
-	final Intent intent = getIntent();
-	String action = intent.getAction();
-
-	/** Set current state depending on intent */
-	if(Intent.ACTION_INSERT.equals(action)) {
-	  mState = STATE_INSERT;
-	} else if(Intent.ACTION_EDIT.equals(action)) {
-	  mState = STATE_EDIT;
-	  _id = intent.getLongExtra("_id", -1);
-	  Log.i(TAG, "The id is: " + _id );
-	  
-	  DatabaseAdapter db = new DatabaseAdapter(this);
-	  db.open();
-	  mCursor = db.getNote(_id); 
-	  if(mCursor.moveToFirst()) {
-	    content = mCursor.getString(
-			mCursor.getColumnIndex(DatabaseAdapter.KEY_NOTE_CONTENT));
-	    title = mCursor.getString(
-	    	mCursor.getColumnIndex(DatabaseAdapter.KEY_NOTE_TITLE));
-	    Log.i(TAG, "Retrieving");
-	  } else
-		Log.i(TAG, "Nothing was retrieved");
-	  mCursor.close();
-	  db.close();
-	}
+		/** Set current state depending on intent */
+		if(Intent.ACTION_INSERT.equals(action)) {
+		  mState = STATE_INSERT;
+		} else if(Intent.ACTION_EDIT.equals(action)) {
+		  mState = STATE_EDIT;
+		  _id = intent.getLongExtra("_id", -1);
+		  Log.i(TAG, "The id is: " + _id );
+		  
+		  DatabaseAdapter db = new DatabaseAdapter(this);
+		  db.open();
+		  mCursor = db.getNote(_id); 
+		  
+		  if(mCursor.moveToFirst()) {
+		  	
+		    content = mCursor.getString(
+				mCursor.getColumnIndex(DatabaseAdapter.KEY_NOTE_CONTENT));
+		    title = mCursor.getString(
+		    	mCursor.getColumnIndex(DatabaseAdapter.KEY_NOTE_TITLE));
+		    
+		    Log.i(TAG, "Retrieving");
+		  } else
+			Log.i(TAG, "Nothing was retrieved");
+		  mCursor.close();
+		  db.close();
+		}
 	
-	setContentView(R.layout.note_editor);
-	
-	noteView = (EditText) findViewById(R.id.note);
-	if(mState == STATE_EDIT) {
-	  noteView.setText(content);
-	}	
+		setContentView(R.layout.note_editor);
+		
+		noteView = (EditText) findViewById(R.id.note);
+		if(mState == STATE_EDIT) {
+		  noteView.setText(content);
+		}	
   }
   
   @Override
   public void onDestroy() {
-	super.onDestroy();
+		super.onDestroy();
   }
   
   @Override
   public void onBackPressed() {
-	switch(mState) {
-	  case STATE_INSERT:
-		Log.i(TAG, "created new note, exiting...");
-		save(title, noteView.getText().toString());
-		finish();
-		break;
-	  case STATE_EDIT:
-		Log.i(TAG, "updated note, exiting...");
-		save(_id, noteView.getText().toString(), title);
-		finish();
-		break;
+		switch(mState) {
+		  case STATE_INSERT:
+				Log.i(TAG, "created new note, exiting...");
+				uploadNote(save(title, noteView.getText().toString()));
+				finish();
+				break;
+		  case STATE_EDIT:
+				Log.i(TAG, "updated note, exiting...");
+				save(_id, noteView.getText().toString(), title);
+				finish();
+				break;
 	}
   }
   
   /** Create new note */
-  private void save(String title, String content) {
-	if(!content.equals(""))
-	{
-	  DatabaseAdapter database = new DatabaseAdapter(this);
-	  database.open();
-	  database.createNote(title, content);
-	  Log.i(TAG, "Note created, it contained " + noteView.getText().toString());
-	  database.close();
-	}
+  private long save(String title, String content) {
+		long id = -1;
+		if(!content.equals("")) {
+		  DatabaseAdapter database = new DatabaseAdapter(this);
+		  database.open();
+		  id = database.createNote(title, content);
+		  Log.i(TAG, "Note created, it contained " + noteView.getText().toString());
+		  database.close();
+		}
+		return id;
   }
   
   /** Update note */ 
@@ -161,53 +165,53 @@ public class NoteEditorActivity extends Activity {
 	  database.close();
   }
   
-  private void uploadNote() {
-	DefaultHttpClient client = new DefaultHttpClient();
-	HttpPost post = new HttpPost("http://192.168.0.101:3000/notes");
-	
-	JSONObject holder = new JSONObject();
-	JSONObject jsonO = new JSONObject();
-	
-	try{
-	  jsonO.put("title", title);
-	  jsonO.put("content", noteView.getText().toString());
-	  
-	  holder.put("note", jsonO);
-	  
-	  StringEntity se = new StringEntity(holder.toString());
-	  post.setEntity(se);
-	  post.setHeader("Content-type","application/json");
-	  
-	  Log.i(TAG, "Finished setting up JSON Object");
-	  
-	} catch (UnsupportedEncodingException e) {
-	  e.printStackTrace();
-	  Log.e(TAG, ""+e);
-	} catch (JSONException js) {
-	  js.printStackTrace();
-	  Log.e(TAG, ""+js);
-	}
-	
-	HttpResponse response = null;
-	
-	try {
-	  Log.i(TAG, "Executing POST request");
-	  response = client.execute(post);
-    } catch (ClientProtocolException e) {
-	  e.printStackTrace();
-    } catch (IOException e) {
-	  e.printStackTrace();
-    }
-    
-    HttpEntity entity = response.getEntity();
-    
-    if(entity != null) {
-      try {
-	    entity.consumeContent();
-      } catch (IOException e) {
-	    e.printStackTrace();
-      }
-    }
+  private void uploadNote(long id) {
+		DefaultHttpClient client = new DefaultHttpClient();
+		HttpPost post = new HttpPost("http://192.168.0.101:3000/notes");
+		
+		JSONObject holder = new JSONObject();
+		JSONObject jsonO = new JSONObject();
+		
+		try{
+		  jsonO.put("title", title);
+		  jsonO.put("content", noteView.getText().toString());
+		  
+		  holder.put("note", jsonO);
+		  
+		  StringEntity se = new StringEntity(holder.toString());
+		  post.setEntity(se);
+		  post.setHeader("Content-type","application/json");
+		  
+		  Log.i(TAG, "Finished setting up JSON Object");
+		  
+		} catch (UnsupportedEncodingException e) {
+		  e.printStackTrace();
+		  Log.e(TAG, ""+e);
+		} catch (JSONException js) {
+		  js.printStackTrace();
+		  Log.e(TAG, ""+js);
+		}
+		
+		HttpResponse response = null;
+		
+		try {
+		  Log.i(TAG, "Executing POST request");
+		  response = client.execute(post);
+	  } catch (ClientProtocolException e) {
+		  e.printStackTrace();
+	  } catch (IOException e) {
+		  e.printStackTrace();
+	  }
+	    
+	  HttpEntity entity = response.getEntity();
+	    
+	  if(entity != null) {
+	    try {
+		    entity.consumeContent();
+	    } catch (IOException e) {
+		    e.printStackTrace();
+	    }
+	  }
   }
   
 }

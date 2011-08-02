@@ -21,50 +21,50 @@ public class NotesListActivity extends ListActivity {
   
   @Override
   protected void onCreate(Bundle savedInstanceState) {
-	super.onCreate(savedInstanceState);
-	
-	loadList();
+		super.onCreate(savedInstanceState);
+		
+		loadList();
   }
   
   protected void onListItemClick(ListView l, View v, int position, long id) {
-	super.onListItemClick(l, v, position, id);
-
-	mCursor.moveToPosition(position);
+		super.onListItemClick(l, v, position, id);
 	
-	Intent mIntent = new Intent();
-	mIntent.setAction(Intent.ACTION_EDIT);
-	mIntent.putExtra("_id", 
-		mCursor.getLong(mCursor.getColumnIndex(DatabaseAdapter.KEY_NOTE_ID)));
-	mIntent.setClass(NotesListActivity.this, NoteEditorActivity.class);
-	startActivity(mIntent);
+		mCursor.moveToPosition(position);
+		
+		Intent mIntent = new Intent();
+		mIntent.setAction(Intent.ACTION_EDIT);
+		mIntent.putExtra("_id", 
+			mCursor.getLong(mCursor.getColumnIndex(DatabaseAdapter.KEY_NOTE_ID)));
+		mIntent.setClass(NotesListActivity.this, NoteEditorActivity.class);
+		startActivity(mIntent);
   }
   
   public void onResume() {
-	super.onResume();
-	
-	Log.i(TAG, "Resuming");
-	loadList();
+		super.onResume();
+		
+		Log.i(TAG, "Resuming");
+		loadList();
   }
   
   private void loadList() {
-	DatabaseAdapter dbAdapter  = new DatabaseAdapter(this);
-	dbAdapter.open();
+		DatabaseAdapter dbAdapter  = new DatabaseAdapter(this);
+		dbAdapter.open();
+		
+		mCursor = dbAdapter.getAllNotes();	
+		
+		startManagingCursor(mCursor);
 	
-	mCursor = dbAdapter.getAllNotes();	
-	
-	startManagingCursor(mCursor);
-
-	String[] column = {DatabaseAdapter.KEY_NOTE_TITLE};
-	int[] to = {R.id.notes_title_list};
-	
-	ListAdapter list = new SimpleCursorAdapter(this,
-		R.layout.notes_list, 
-		mCursor, 
-		column, 
-		to);
-	
-	this.setListAdapter(list);
-	
-	dbAdapter.close();
+		String[] column = {DatabaseAdapter.KEY_NOTE_TITLE};
+		int[] to = {R.id.notes_title_list};
+		
+		ListAdapter list = new SimpleCursorAdapter(this,
+			R.layout.notes_list, 
+			mCursor, 
+			column, 
+			to);
+		
+		this.setListAdapter(list);
+		
+		dbAdapter.close();
   }
 }

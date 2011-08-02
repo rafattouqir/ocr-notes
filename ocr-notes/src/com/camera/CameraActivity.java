@@ -47,96 +47,94 @@ public class CameraActivity extends Activity implements SurfaceHolder.Callback {
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
-	super.onCreate(savedInstanceState);
-
-	getWindow().setFormat(PixelFormat.TRANSLUCENT);
-
-	setContentView(R.layout.camera);
+		super.onCreate(savedInstanceState);
 	
-	mLinearLayout = 
-	    (LinearLayout) findViewById(R.id.camera_linear_layout_button);
+		getWindow().setFormat(PixelFormat.TRANSLUCENT);
 	
-	mLinearLayout2 =
-	  	(LinearLayout) findViewById(R.id.camera_linear_layout_label);
-
-	mSurfaceView = (SurfaceView) findViewById(R.id.camera_surface);
-	mSurfaceHolder = mSurfaceView.getHolder();
-	mSurfaceHolder.addCallback(this);
-	mSurfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
-
-	mImageButton = (ImageButton) findViewById(R.id.camera_button);
-
-	mImageButton.setOnClickListener(new OnClickListener() {
-	  @Override
-	  public void onClick(View view) {
-		if (view.getId() == mImageButton.getId()) {
-		  synchronized(this) {
-			
-    		mCamera.autoFocus(AFocusCallback);
-    		mCamera.takePicture(null, null, jpegCallback);
-		  }
-		}
-	  }
-	});
-	Log.i(TAG, "onCreated!");
+		setContentView(R.layout.camera);
+		
+		mLinearLayout = 
+		    (LinearLayout) findViewById(R.id.camera_linear_layout_button);
+		
+		mLinearLayout2 =
+		  	(LinearLayout) findViewById(R.id.camera_linear_layout_label);
+	
+		mSurfaceView = (SurfaceView) findViewById(R.id.camera_surface);
+		mSurfaceHolder = mSurfaceView.getHolder();
+		mSurfaceHolder.addCallback(this);
+		mSurfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
+	
+		mImageButton = (ImageButton) findViewById(R.id.camera_button);
+	
+		mImageButton.setOnClickListener(new OnClickListener() {
+		  @Override
+		  public void onClick(View view) {
+				if (view.getId() == mImageButton.getId()) {
+				  synchronized(this) {
+					
+		    		mCamera.autoFocus(AFocusCallback);
+		    		mCamera.takePicture(null, null, jpegCallback);
+				  }
+			}
+		}});
+		Log.i(TAG, "onCreated!");
   }
 
   @Override
   public void surfaceChanged(SurfaceHolder holder, int format, int w, int h) {
+		if (mPreviewRunning) {
+		  mCamera.stopPreview();
+		}
 
-	if (mPreviewRunning) {
-	  mCamera.stopPreview();
-	}
-
-	Camera.Parameters p = mCamera.getParameters();
-	p.setPreviewSize(w, h);
-	mCamera.setParameters(p);
-
-	try {
-	  mCamera.setPreviewDisplay(holder);
-	} catch (IOException e) {
-	  Log.e(TAG, "IOException lol");
-	}
-
-	mCamera.startPreview();
-	mPreviewRunning = true;
+		Camera.Parameters p = mCamera.getParameters();
+		p.setPreviewSize(w, h);
+		mCamera.setParameters(p);
+	
+		try {
+		  mCamera.setPreviewDisplay(holder);
+		} catch (IOException e) {
+		  Log.e(TAG, "IOException lol");
+		}
+	
+		mCamera.startPreview();
+		mPreviewRunning = true;
 
   }
 
   @Override
   public void surfaceCreated(SurfaceHolder holder) {
-	mCamera = Camera.open();
-
-	Log.i(TAG, "surfaceCreated!");
+		mCamera = Camera.open();
+	
+		Log.i(TAG, "surfaceCreated!");
   }
 
   @Override
   public void surfaceDestroyed(SurfaceHolder holder) {
-	mCamera.stopPreview();
-	mPreviewRunning = false;
-	mCamera.release();
-
-	Log.i(TAG, "surfaceDestroyed!");
+		mCamera.stopPreview();
+		mPreviewRunning = false;
+		mCamera.release();
+	
+		Log.i(TAG, "surfaceDestroyed!");
   }
 
   /* Picture Callback */
   Camera.PictureCallback jpegCallback = new Camera.PictureCallback() {
-	public void onPictureTaken(byte[] imageData, Camera c) {
-
-	  Uri imageFileUri = getContentResolver().insert(
-		  Media.EXTERNAL_CONTENT_URI, new ContentValues());
-
-	  try {
-		OutputStream imageFileOS = getContentResolver().openOutputStream(
-			imageFileUri);
-
-		imageFileOS.write(imageData);
-		imageFileOS.flush();
-		imageFileOS.close();
-
-	  } catch (IOException e) {
-		Log.e(TAG, "IOException!");
-	  }
+		public void onPictureTaken(byte[] imageData, Camera c) {
+	
+		  Uri imageFileUri = getContentResolver().insert(
+			  Media.EXTERNAL_CONTENT_URI, new ContentValues());
+	
+		  try {
+			OutputStream imageFileOS = getContentResolver().openOutputStream(
+				imageFileUri);
+	
+			imageFileOS.write(imageData);
+			imageFileOS.flush();
+			imageFileOS.close();
+	
+		  } catch (IOException e) {
+				Log.e(TAG, "IOException!");
+		  }
 
 	  mLinearLayout.setVisibility(View.INVISIBLE);
 	  mLinearLayout2.setVisibility(View.INVISIBLE);
@@ -146,7 +144,7 @@ public class CameraActivity extends Activity implements SurfaceHolder.Callback {
 
 	  Log.i(TAG, imageFileUri.getPath());
 
-	}
+		}
   };
   
   AutoFocusCallback AFocusCallback = new AutoFocusCallback() {
