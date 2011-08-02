@@ -42,7 +42,7 @@ public class NotesListActivity extends ListActivity {
   public void onResume() {
 	super.onResume();
 	
-	Log.i(TAG, "Resumeng.");
+	Log.i(TAG, "Resuming");
 	loadList();
   }
   

@@ -1,6 +1,19 @@
 package com.note;
 
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+
 import keendy.projects.R;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -147,4 +160,54 @@ public class NoteEditorActivity extends Activity {
 	  Log.i(TAG, "Note successfully updated!");
 	  database.close();
   }
+  
+  private void uploadNote() {
+	DefaultHttpClient client = new DefaultHttpClient();
+	HttpPost post = new HttpPost("http://192.168.0.101:3000/notes");
+	
+	JSONObject holder = new JSONObject();
+	JSONObject jsonO = new JSONObject();
+	
+	try{
+	  jsonO.put("title", title);
+	  jsonO.put("content", noteView.getText().toString());
+	  
+	  holder.put("note", jsonO);
+	  
+	  StringEntity se = new StringEntity(holder.toString());
+	  post.setEntity(se);
+	  post.setHeader("Content-type","application/json");
+	  
+	  Log.i(TAG, "Finished setting up JSON Object");
+	  
+	} catch (UnsupportedEncodingException e) {
+	  e.printStackTrace();
+	  Log.e(TAG, ""+e);
+	} catch (JSONException js) {
+	  js.printStackTrace();
+	  Log.e(TAG, ""+js);
+	}
+	
+	HttpResponse response = null;
+	
+	try {
+	  Log.i(TAG, "Executing POST request");
+	  response = client.execute(post);
+    } catch (ClientProtocolException e) {
+	  e.printStackTrace();
+    } catch (IOException e) {
+	  e.printStackTrace();
+    }
+    
+    HttpEntity entity = response.getEntity();
+    
+    if(entity != null) {
+      try {
+	    entity.consumeContent();
+      } catch (IOException e) {
+	    e.printStackTrace();
+      }
+    }
+  }
+  
 }
