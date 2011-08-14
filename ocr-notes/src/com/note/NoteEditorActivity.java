@@ -194,7 +194,7 @@ public class NoteEditorActivity extends Activity {
 		
 		try{
 		  jsonO.put("title", title);
-		  jsonO.put("content", noteView.getText().toString());
+		  jsonO.put("content", content);
 		  
 		  holder.put("note", jsonO);
 		  
