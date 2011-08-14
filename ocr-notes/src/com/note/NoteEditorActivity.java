@@ -25,6 +25,7 @@ import android.graphics.Rect;
 import android.os.Bundle;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.Menu;
 import android.widget.EditText;
 
 import com.database.DatabaseAdapter;
@@ -33,26 +34,31 @@ import com.database.DatabaseAdapter;
  * 
  * @author kevin
  *
- * TODO implement update note method
+ * TODO implement menus for editing the title, discarding etc
  */
 public class NoteEditorActivity extends Activity {
 
   private static String TAG = "Note Editor";
   
+  /**  Different states this note editor may enter */
   private static final int STATE_EDIT = 0;
   private static final int STATE_INSERT = 1;
   
+  /** our variables worth noting :) */
   private EditText noteView;
   private String title = "Untitled";
   
+  /** Our current state */
   private int mState;
   
+  /** SQLite variables or projections */
   private Cursor mCursor;
   private long _id;
   private String content;
   
   public static class PLUGEditText extends EditText {
 
+  /** variables for our custom text editor with awesome underline churva */
 	private Rect mRect;
 	private Paint mPaint;
 
@@ -123,6 +129,19 @@ public class NoteEditorActivity extends Activity {
   }
   
   @Override
+  public boolean onCreateOptionsMenu(Menu menu) {
+  	super.onCreateOptionsMenu(menu);
+  	
+  	if(mState == STATE_INSERT) {
+  		
+  	} else {
+  		
+  	}
+  	
+		return true;
+  }
+  
+  @Override
   public void onDestroy() {
 		super.onDestroy();
   }
@@ -132,7 +151,8 @@ public class NoteEditorActivity extends Activity {
 		switch(mState) {
 		  case STATE_INSERT:
 				Log.i(TAG, "created new note, exiting...");
-				uploadNote(save(title, noteView.getText().toString()));
+				uploadNote(save(title, noteView.getText().toString()),
+						title, noteView.getText().toString());
 				finish();
 				break;
 		  case STATE_EDIT:
@@ -140,7 +160,7 @@ public class NoteEditorActivity extends Activity {
 				save(_id, noteView.getText().toString(), title);
 				finish();
 				break;
-	}
+		}
   }
   
   /** Create new note */
@@ -165,9 +185,9 @@ public class NoteEditorActivity extends Activity {
 	  database.close();
   }
   
-  private void uploadNote(long id) {
+  private void uploadNote(long id, String title, String content) {
 		DefaultHttpClient client = new DefaultHttpClient();
-		HttpPost post = new HttpPost("http://192.168.0.101:3000/notes");
+		HttpPost post = new HttpPost("http://192.168.0.101/notes");
 		
 		JSONObject holder = new JSONObject();
 		JSONObject jsonO = new JSONObject();
@@ -207,11 +227,11 @@ public class NoteEditorActivity extends Activity {
 	    
 	  if(entity != null) {
 	    try {
+	    	Log.i(TAG, "Successfully posted on the website!");
 		    entity.consumeContent();
 	    } catch (IOException e) {
 		    e.printStackTrace();
 	    }
 	  }
   }
-  
 }
