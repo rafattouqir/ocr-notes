@@ -8,8 +8,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 
 import com.camera.CameraActivity;
+import com.note.ListTabActivity;
 import com.note.NoteEditorActivity;
-import com.note.NotesListActivity;
 
 /**
  * HomeActivity that handles all key presses during home view 
@@ -46,7 +46,7 @@ public class HomeActivity extends Activity implements OnClickListener {
 				startActivity(new Intent(HomeActivity.this, AboutActivity.class));
 				break;
 		  case R.id.home_myNotebook:
-				startActivity(new Intent(HomeActivity.this, NotesListActivity.class));
+				startActivity(new Intent(HomeActivity.this, ListTabActivity.class));
 				break;
 		  case R.id.home_writeNote:
 				Intent mIntent = new Intent();
