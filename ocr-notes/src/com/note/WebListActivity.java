@@ -3,15 +3,17 @@ package com.note;
 import java.util.HashMap;
 
 import keendy.projects.R;
-import android.app.Activity;
+import android.app.ListActivity;
+import android.database.Cursor;
 import android.os.Bundle;
 
-public class WebListActivity extends Activity {
+public class WebListActivity extends ListActivity {
+
+	private Cursor mCursor;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.web_list);
 	}
 	
 	/*

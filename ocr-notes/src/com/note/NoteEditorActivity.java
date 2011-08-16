@@ -114,8 +114,9 @@ public class NoteEditorActivity extends Activity {
 		    	mCursor.getColumnIndex(DatabaseAdapter.KEY_NOTE_TITLE));
 		    
 		    Log.i(TAG, "Retrieving");
-		  } else
-			Log.i(TAG, "Nothing was retrieved");
+		  } else {
+				Log.i(TAG, "Nothing was retrieved");
+		  }
 		  mCursor.close();
 		  db.close();
 		}
@@ -191,7 +192,7 @@ public class NoteEditorActivity extends Activity {
   
   private void uploadNote(long id, String title, String content) {
 		DefaultHttpClient client = new DefaultHttpClient();
-		HttpPost post = new HttpPost("http://192.168.0.101/notes");
+		HttpPost post = new HttpPost("http://192.168.0.101/notes"); //change heroku
 		
 		JSONObject holder = new JSONObject();
 		JSONObject jsonO = new JSONObject();

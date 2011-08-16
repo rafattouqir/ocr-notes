@@ -58,6 +58,7 @@ public final class R {
         public static final int note=0x7f050015;
         public static final int notes_title_list=0x7f050016;
         public static final int textView1=0x7f050004;
+        public static final int web_title_list=0x7f050017;
     }
     public static final class layout {
         public static final int about=0x7f030000;
