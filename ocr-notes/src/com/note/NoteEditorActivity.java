@@ -128,6 +128,9 @@ public class NoteEditorActivity extends Activity {
 		}	
   }
   
+  /*
+   * TODO implement options menu depending on intent
+   */
   @Override
   public boolean onCreateOptionsMenu(Menu menu) {
   	super.onCreateOptionsMenu(menu);
@@ -151,8 +154,9 @@ public class NoteEditorActivity extends Activity {
 		switch(mState) {
 		  case STATE_INSERT:
 				Log.i(TAG, "created new note, exiting...");
-				uploadNote(save(title, noteView.getText().toString()),
-						title, noteView.getText().toString());
+//				uploadNote(save(title, noteView.getText().toString()),
+//						title, noteView.getText().toString());
+				save(title, noteView.getText().toString());
 				finish();
 				break;
 		  case STATE_EDIT:

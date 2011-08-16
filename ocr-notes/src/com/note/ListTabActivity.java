@@ -16,12 +16,19 @@ public class ListTabActivity extends TabActivity {
 		
 		TabHost tabHost = getTabHost();
 		TabSpec spec;
-		Intent intent;
+		TabSpec spec2;
+		Intent localListIntent;
+		Intent webListIntent;
 		
-		intent = new Intent(this, NotesListActivity.class);
+		localListIntent = new Intent(this, NotesListActivity.class);
+		webListIntent = new Intent(this, WebListActivity.class);
 		
 		spec = tabHost.newTabSpec("Local Notes").setIndicator("Local Notes")
-			.setContent(intent);
+			.setContent(localListIntent);
 		tabHost.addTab(spec);
+		
+		spec2 = tabHost.newTabSpec("Web Notes").setIndicator("Web Notes")
+			.setContent(webListIntent);
+		tabHost.addTab(spec2);
 	}
 }
