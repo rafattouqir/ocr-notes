@@ -26,6 +26,11 @@ import android.os.Bundle;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.EditText;
 
 import com.database.DatabaseAdapter;
@@ -36,7 +41,7 @@ import com.database.DatabaseAdapter;
  *
  * TODO implement menus for editing the title, discarding etc
  */
-public class NoteEditorActivity extends Activity {
+public class NoteEditorActivity extends Activity implements OnClickListener{
 
   private static String TAG = "Note Editor";
   
@@ -55,6 +60,8 @@ public class NoteEditorActivity extends Activity {
   private Cursor mCursor;
   private long _id;
   private String content;
+  
+  NoteAddTitle addDialog;
   
   public static class PLUGEditText extends EditText {
 
@@ -129,21 +136,45 @@ public class NoteEditorActivity extends Activity {
 		}	
   }
   
-  /*
+	/*
    * TODO implement options menu depending on intent
    */
   @Override
   public boolean onCreateOptionsMenu(Menu menu) {
   	super.onCreateOptionsMenu(menu);
-  	
+
+    MenuInflater inflater = getMenuInflater();
+    inflater.inflate(R.menu.title_menu, menu);
+     
+	
   	if(mState == STATE_INSERT) {
   		
+  		
   	} else {
+  		
   		
   	}
   	
 		return true;
   }
+  
+  @Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+  	switch (item.getItemId()) {
+      case R.id.add_menu:
+      	  addDialog = new NoteAddTitle(this);
+      	  Button addBttn = (Button) addDialog.findViewById(R.id.add_bttn);
+      	  addBttn.setOnClickListener(this);
+      	  addDialog.show();
+          return true;
+      case R.id.cancel_menu:
+      	
+          return true;
+      default:
+          return super.onOptionsItemSelected(item);
+      }
+	}
+
   
   @Override
   public void onDestroy() {
@@ -239,4 +270,12 @@ public class NoteEditorActivity extends Activity {
 	    }
 	  }
   }
+
+	@Override
+	public void onClick(View v) {
+		EditText title_text= (EditText) addDialog.findViewById(R.id.add_title);
+		title = title_text.getText().toString();
+		addDialog.dismiss();
+		
+	}
 }
