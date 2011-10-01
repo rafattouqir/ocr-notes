@@ -10,7 +10,7 @@
   </class>  
   <class id="2" corner="BOTTOM_RIGHT" language="java" name="android.app.TabActivity" project="ocr-notes" 
     file="C:/android_sdk/android-sdk_r12-windows/android-sdk-windows/platforms/android-7/android.jar" binary="true">    
-    <position x="379" y="425" width="157" height="45"/>    
+    <position x="173" y="235" width="157" height="45"/>    
     <display autosize="false" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true"/>      
       <operations public="true" package="true" protected="true" private="true"/>    
@@ -308,6 +308,30 @@
       <operations public="true" package="true" protected="true" private="true"/>    
     </display>  
   </class>  
+  <class id="42" corner="BOTTOM_RIGHT" language="java" name="android.graphics.Bitmap" project="ocr-notes" 
+    file="C:/android_sdk/android-sdk_r12-windows/android-sdk-windows/platforms/android-7/android.jar" binary="true">    
+    <position x="978" y="-390" width="157" height="46"/>    
+    <display autosize="false" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="43" corner="BOTTOM_RIGHT" language="java" name="android.graphics.Canvas" project="ocr-notes" 
+    file="C:/android_sdk/android-sdk_r12-windows/android-sdk-windows/platforms/android-7/android.jar" binary="true">    
+    <position x="1149" y="-471" width="144" height="45"/>    
+    <display autosize="false" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="44" corner="BOTTOM_RIGHT" language="java" name="android.graphics.Path" project="ocr-notes" 
+    file="C:/android_sdk/android-sdk_r12-windows/android-sdk-windows/platforms/android-7/android.jar" binary="true">    
+    <position x="1306" y="-580" width="148" height="45"/>    
+    <display autosize="false" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
   <dependency>    
     <end type="SOURCE" nodeId="31"/>    
     <end type="TARGET" nodeId="1"/>  
@@ -382,6 +406,14 @@
       <multiplicity minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" nodeId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association>    
+    <end type="SOURCE" nodeId="25" navigable="false">      
+      <attribute name="mPath"/>      
+      <multiplicity minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" nodeId="44" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association>    
@@ -549,7 +581,7 @@
     <end type="TARGET" nodeId="25"/>  
   </nesting>  
   <association>    
-    <bendpoint x="1242" y="-359"/>    
+    <bendpoint x="919" y="-445"/>    
     <end type="SOURCE" nodeId="24" navigable="false">      
       <attribute name="mPaint"/>      
       <multiplicity minimum="0" maximum="1"/>    
@@ -579,7 +611,6 @@
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association>    
-    <bendpoint x="1053" y="-475"/>    
     <end type="SOURCE" nodeId="25" navigable="false">      
       <attribute name="mBitmapPaint"/>      
       <multiplicity minimum="0" maximum="1"/>    
@@ -674,6 +705,10 @@
     <end type="TARGET" nodeId="11" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
+  <dependency>    
+    <end type="SOURCE" nodeId="14"/>    
+    <end type="TARGET" nodeId="28"/>  
+  </dependency>  
   <association>    
     <bendpoint x="-512" y="-728"/>    
     <end type="SOURCE" nodeId="6" navigable="false">      
@@ -730,6 +765,10 @@
     <end type="TARGET" nodeId="9"/>  
   </realization>  
   <dependency>    
+    <end type="SOURCE" nodeId="33"/>    
+    <end type="TARGET" nodeId="28"/>  
+  </dependency>  
+  <dependency>    
     <end type="SOURCE" nodeId="31"/>    
     <end type="TARGET" nodeId="30"/>  
   </dependency>  
@@ -753,10 +792,26 @@
     <end type="TARGET" nodeId="20" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
+  <association>    
+    <end type="SOURCE" nodeId="25" navigable="false">      
+      <attribute name="mCanvas"/>      
+      <multiplicity minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" nodeId="43" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
   <generalization>    
     <end type="SOURCE" nodeId="15"/>    
     <end type="TARGET" nodeId="7"/>  
   </generalization>  
+  <association>    
+    <end type="SOURCE" nodeId="25" navigable="false">      
+      <attribute name="mBitmap"/>      
+      <multiplicity minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" nodeId="42" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
   <association>    
     <bendpoint x="1333" y="-938"/>    
     <end type="SOURCE" nodeId="24" navigable="false">      
@@ -872,6 +927,10 @@
     <end type="SOURCE" nodeId="20"/>    
     <end type="TARGET" nodeId="18"/>  
   </generalization>  
+  <dependency>    
+    <end type="SOURCE" nodeId="33"/>    
+    <end type="TARGET" nodeId="9"/>  
+  </dependency>  
   <association>    
     <end type="SOURCE" nodeId="21" navigable="false">      
       <attribute name="DATABASE_CREATE_SUBJECT">        
@@ -882,6 +941,10 @@
     <end type="TARGET" nodeId="11" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
+  <dependency>    
+    <end type="SOURCE" nodeId="14"/>    
+    <end type="TARGET" nodeId="21"/>  
+  </dependency>  
   <generalization>    
     <end type="SOURCE" nodeId="39"/>    
     <end type="TARGET" nodeId="28"/>  
