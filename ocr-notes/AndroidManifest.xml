@@ -16,7 +16,7 @@
       android:debuggable="true">
     
         <activity 
-          android:name="com.main.HomeActivity"
+          android:name="com.plug.main.HomeActivity"
           android:label="@string/app_name">
 	        <intent-filter>
               <action android:name="android.intent.action.MAIN" />
@@ -25,20 +25,20 @@
         </activity>
         
         <activity 
-          android:name="com.camera.CameraActivity"
+          android:name="com.plug.camera.CameraActivity"
           android:label="@string/app_name"
           android:screenOrientation="landscape"
           android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
         </activity>
    
    		<activity
-   		  android:name="com.main.AboutActivity"
+   		  android:name="com.plug.main.AboutActivity"
    		  android:label="@string/about_label"
    		  android:theme="@android:style/Theme.Dialog">
    		</activity>
     
     	<activity 
-    	  android:name="com.note.NoteEditorActivity"
+    	  android:name="com.plug.note.NoteEditorActivity"
     	  android:label="@string/app_name" >
     	  	<intent-filter >
     	  	  <action android:name="android.intent.action.INSERT" />
@@ -49,19 +49,25 @@
     	</activity>
     	
     	<activity
-    	 android:name="com.note.ListTabActivity"
+    	 android:name="com.plug.note.ListTabActivity"
     	 android:label="@string/app_name">
     	 
     	 </activity>
     	
     	<activity 
-    	  android:name="com.note.NotesListActivity"
+    	  android:name="com.plug.note.NotesListActivity"
     	  android:label="@string/app_name" >
     	</activity>
     	
     	<activity
-    	  android:name="com.note.WebListActivity"
+    	  android:name="com.plug.note.WebListActivity"
     	  android:label="@string/app_name" >	
     	</activity>
+    	
+    	<activity
+    	  android:name="com.plug.doodle.DoodleActivity"
+    	  android:label="@string/app_name" >	
+    	</activity>
+    	
     </application>
 </manifest>

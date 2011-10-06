@@ -1,7 +1,7 @@
 <class-diagram version="1.0.4" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
   associations="true" dependencies="false" nesting-relationships="true">  
-  <class id="1" corner="BOTTOM_RIGHT" language="java" name="com.note.ListTabActivity" project="ocr-notes" 
-    file="/ocr-notes/src/com/note/ListTabActivity.java" binary="false">    
+  <class id="1" corner="BOTTOM_RIGHT" language="java" name="com.plug.note.ListTabActivity" project="ocr-notes" 
+    file="/ocr-notes/src/com/plug/note/ListTabActivity.java" binary="false">    
     <position x="-149" y="16" width="228" height="83"/>    
     <display autosize="false" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true"/>      
@@ -16,8 +16,8 @@
       <operations public="true" package="true" protected="true" private="true"/>    
     </display>  
   </class>  
-  <class id="3" corner="BOTTOM_RIGHT" language="java" name="com.note.NoteAddTitle" project="ocr-notes" 
-    file="/ocr-notes/src/com/note/NoteAddTitle.java" binary="false">    
+  <class id="3" corner="BOTTOM_RIGHT" language="java" name="com.plug.note.NoteAddTitle" project="ocr-notes" 
+    file="/ocr-notes/src/com/plug/note/NoteAddTitle.java" binary="false">    
     <position x="-83" y="-869" width="-1" height="-1"/>    
     <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true"/>      
@@ -32,16 +32,16 @@
       <operations public="true" package="true" protected="true" private="true"/>    
     </display>  
   </class>  
-  <class id="5" corner="BOTTOM_RIGHT" language="java" name="com.note.NoteEditorActivity.PLUGEditText" 
-    project="ocr-notes" file="/ocr-notes/src/com/note/NoteEditorActivity.java" binary="false">    
+  <class id="5" corner="BOTTOM_RIGHT" language="java" name="com.plug.note.NoteEditorActivity.PLUGEditText" 
+    project="ocr-notes" file="/ocr-notes/src/com/plug/note/NoteEditorActivity.java" binary="false">    
     <position x="-73" y="-227" width="-1" height="-1"/>    
     <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true"/>      
       <operations public="true" package="true" protected="true" private="true"/>    
     </display>  
   </class>  
-  <class id="6" corner="BOTTOM_RIGHT" language="java" name="com.note.NoteEditorActivity" project="ocr-notes" 
-    file="/ocr-notes/src/com/note/NoteEditorActivity.java" binary="false">    
+  <class id="6" corner="BOTTOM_RIGHT" language="java" name="com.plug.note.NoteEditorActivity" project="ocr-notes" 
+    file="/ocr-notes/src/com/plug/note/NoteEditorActivity.java" binary="false">    
     <position x="-80" y="-574" width="-1" height="-1"/>    
     <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true"/>      
@@ -104,8 +104,8 @@
       <operations public="true" package="true" protected="true" private="true"/>    
     </display>  
   </class>  
-  <class id="14" corner="BOTTOM_RIGHT" language="java" name="com.note.NotesListActivity" project="ocr-notes" 
-    file="/ocr-notes/src/com/note/NotesListActivity.java" binary="false">    
+  <class id="14" corner="BOTTOM_RIGHT" language="java" name="com.plug.note.NotesListActivity" project="ocr-notes" 
+    file="/ocr-notes/src/com/plug/note/NotesListActivity.java" binary="false">    
     <position x="-402" y="-109" width="-1" height="-1"/>    
     <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true"/>      
@@ -137,16 +137,16 @@
       <operations public="true" package="true" protected="true" private="true"/>    
     </display>  
   </class>  
-  <class id="20" corner="BOTTOM_RIGHT" language="java" name="com.database.DatabaseAdapter.DatabaseHelper" 
-    project="ocr-notes" file="/ocr-notes/src/com/database/DatabaseAdapter.java" binary="false">    
+  <class id="20" corner="BOTTOM_RIGHT" language="java" name="com.plug.database.DatabaseAdapter.DatabaseHelper" 
+    project="ocr-notes" file="/ocr-notes/src/com/plug/database/DatabaseAdapter.java" binary="false">    
     <position x="-1352" y="-1128" width="-1" height="-1"/>    
     <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true"/>      
       <operations public="true" package="true" protected="true" private="true"/>    
     </display>  
   </class>  
-  <class id="21" corner="BOTTOM_RIGHT" language="java" name="com.database.DatabaseAdapter" project="ocr-notes" 
-    file="/ocr-notes/src/com/database/DatabaseAdapter.java" binary="false">    
+  <class id="21" corner="BOTTOM_RIGHT" language="java" name="com.plug.database.DatabaseAdapter" project="ocr-notes" 
+    file="/ocr-notes/src/com/plug/database/DatabaseAdapter.java" binary="false">    
     <position x="-1326" y="-779" width="-1" height="-1"/>    
     <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true"/>      
@@ -161,32 +161,32 @@
       <operations public="true" package="true" protected="true" private="true"/>    
     </display>  
   </class>  
-  <class id="23" corner="BOTTOM_RIGHT" language="java" name="com.database.DBSchema" project="ocr-notes" 
-    file="/ocr-notes/src/com/database/DBSchema.java" binary="false">    
+  <class id="23" corner="BOTTOM_RIGHT" language="java" name="com.plug.database.DBSchema" project="ocr-notes" 
+    file="/ocr-notes/src/com/plug/database/DBSchema.java" binary="false">    
     <position x="-878" y="-261" width="-1" height="-1"/>    
     <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true"/>      
       <operations public="true" package="true" protected="true" private="true"/>    
     </display>  
   </class>  
-  <class id="24" corner="BOTTOM_RIGHT" language="java" name="com.doodle.DoodleActivity" project="ocr-notes" 
-    file="/ocr-notes/src/com/doodle/DoodleActivity.java" binary="false">    
+  <class id="24" corner="BOTTOM_RIGHT" language="java" name="com.plug.doodle.DoodleActivity" project="ocr-notes" 
+    file="/ocr-notes/src/com/plug/doodle/DoodleActivity.java" binary="false">    
     <position x="1397" y="-802" width="-1" height="-1"/>    
     <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true"/>      
       <operations public="true" package="true" protected="true" private="true"/>    
     </display>  
   </class>  
-  <class id="25" corner="BOTTOM_RIGHT" language="java" name="com.doodle.DoodleActivity.MyView" project="ocr-notes" 
-    file="/ocr-notes/src/com/doodle/DoodleActivity.java" binary="false">    
+  <class id="25" corner="BOTTOM_RIGHT" language="java" name="com.plug.doodle.DoodleActivity.MyView" project="ocr-notes" 
+    file="/ocr-notes/src/com/plug/doodle/DoodleActivity.java" binary="false">    
     <position x="1033" y="-733" width="-1" height="-1"/>    
     <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true"/>      
       <operations public="true" package="true" protected="true" private="true"/>    
     </display>  
   </class>  
-  <class id="26" corner="BOTTOM_RIGHT" language="java" name="com.doodle.GraphicsActivity" project="ocr-notes" 
-    file="/ocr-notes/src/com/doodle/GraphicsActivity.java" binary="false">    
+  <class id="26" corner="BOTTOM_RIGHT" language="java" name="com.plug.doodle.GraphicsActivity" project="ocr-notes" 
+    file="/ocr-notes/src/com/plug/doodle/GraphicsActivity.java" binary="false">    
     <position x="706" y="-1074" width="-1" height="-1"/>    
     <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true"/>      
@@ -209,32 +209,32 @@
       <operations public="true" package="true" protected="true" private="true"/>    
     </display>  
   </class>  
-  <class id="30" corner="BOTTOM_RIGHT" language="java" name="com.main.AboutActivity" project="ocr-notes" 
-    file="/ocr-notes/src/com/main/AboutActivity.java" binary="false">    
+  <class id="30" corner="BOTTOM_RIGHT" language="java" name="com.plug.main.AboutActivity" project="ocr-notes" 
+    file="/ocr-notes/src/com/plug/main/AboutActivity.java" binary="false">    
     <position x="405" y="-40" width="195" height="83"/>    
     <display autosize="false" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true"/>      
       <operations public="true" package="true" protected="true" private="true"/>    
     </display>  
   </class>  
-  <class id="31" corner="BOTTOM_RIGHT" language="java" name="com.main.HomeActivity" project="ocr-notes" 
-    file="/ocr-notes/src/com/main/HomeActivity.java" binary="false">    
+  <class id="31" corner="BOTTOM_RIGHT" language="java" name="com.plug.main.HomeActivity" project="ocr-notes" 
+    file="/ocr-notes/src/com/plug/main/HomeActivity.java" binary="false">    
     <position x="150" y="-459" width="187" height="99"/>    
     <display autosize="false" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true"/>      
       <operations public="true" package="true" protected="true" private="true"/>    
     </display>  
   </class>  
-  <class id="32" corner="BOTTOM_RIGHT" language="java" name="com.neural.Neuron" project="ocr-notes" 
-    file="/ocr-notes/src/com/neural/Neuron.java" binary="false">    
+  <class id="32" corner="BOTTOM_RIGHT" language="java" name="com.plug.neural.Neuron" project="ocr-notes" 
+    file="/ocr-notes/src/com/plug/neural/Neuron.java" binary="false">    
     <position x="-1629" y="-339" width="-1" height="-1"/>    
     <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true"/>      
       <operations public="true" package="true" protected="true" private="true"/>    
     </display>  
   </class>  
-  <class id="33" corner="BOTTOM_RIGHT" language="java" name="com.camera.CameraActivity" project="ocr-notes" 
-    file="/ocr-notes/src/com/camera/CameraActivity.java" binary="false">    
+  <class id="33" corner="BOTTOM_RIGHT" language="java" name="com.plug.camera.CameraActivity" project="ocr-notes" 
+    file="/ocr-notes/src/com/plug/camera/CameraActivity.java" binary="false">    
     <position x="-386" y="-1080" width="-1" height="-1"/>    
     <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true"/>      
