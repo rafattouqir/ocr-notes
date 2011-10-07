@@ -2,9 +2,13 @@
 <menu
   xmlns:android="http://schemas.android.com/apk/res/android">
   <item android:id="@+id/add_menu"
-          android:icon="@drawable/icon"
-          android:title="Add title" />   
+          android:icon="@drawable/add64"
+          android:title="Add title" />
+   <item android:id="@+id/camera_menu"
+          android:icon="@drawable/camera64"
+          android:title="Take Snapshot" />   
    <item android:id="@+id/cancel_menu"
-          android:icon="@drawable/icon"
-          android:title="Cancel" />   
+          android:icon="@drawable/close64"
+          android:title="Cancel" />
+     
 </menu>
