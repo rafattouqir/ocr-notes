@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+  	android:layout_height="fill_parent"
+  	android:orientation="vertical"
+  	android:layout_gravity="bottom"
+  	android:background="@color/White">
+
+    <LinearLayout
+		android:layout_height="wrap_content"
+		android:layout_width="fill_parent"
+		android:orientation="horizontal"
+		android:background="@drawable/header">        
+
+	    <ImageView
+	    	android:id="@+id/home_logo"
+	    	android:src="@drawable/pluglogo"
+	    	android:layout_width="wrap_content"
+	    	android:layout_height="wrap_content"
+	    	android:layout_gravity="left">
+	    </ImageView>        
+	    
+	   	<TextView
+	   		android:id="@+id/home_username"
+	   		android:text="This is User Name."
+	   		android:textColor="@color/White"
+			android:gravity="right"
+	   		android:layout_gravity="center_vertical"
+			android:paddingTop="10px"
+	   		android:paddingBottom="10px" 
+	   		android:paddingRight="10px" 
+	   		android:layout_width="fill_parent"
+	   		android:layout_height="wrap_content"
+	   		android:layout_weight="1" />
+  </LinearLayout>
+  
+  
+    
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_weight="2"
+        android:orientation="horizontal"       
+        android:gravity="center|center_vertical" 	
+    	android:layout_gravity="center_vertical|center_horizontal|center"
+    	android:background="@drawable/menu_background_thirdrow_white"
+    	>
+
+	<LinearLayout
+			android:layout_width="0dp"
+		    android:layout_height="wrap_content"
+		    android:layout_weight="1"
+		  
+		    android:gravity="center|center_vertical"
+			>
+	
+        <Button
+          	android:id="@+id/home_createnote"
+          	android:text="Create"
+			android:textColor="@color/Black"
+			android:textStyle="bold"
+		    android:background="@android:color/transparent"
+	       	android:drawableTop="@drawable/createnote3"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+			android:paddingBottom="5dp"
+			android:onClick="onClickCreate"
+			>
+	        </Button>
+        
+	</LinearLayout>        
+        
+        
+	<LinearLayout
+			android:layout_width="0dp"
+		    android:layout_height="wrap_content"
+		    android:layout_weight="1"
+
+		    android:gravity="center|center_vertical"
+			>      
+        <Button
+      	android:id="@+id/home_doodleNote"
+      	android:text="Doodle"
+		android:textColor="@color/Black"
+		android:textStyle="bold"
+	    android:background="@android:color/transparent"
+        android:drawableTop="@drawable/doodle3"
+	    android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:paddingBottom="5dp"
+		android:onClick="onClickDoodle"
+		>
+        </Button>
+	</LinearLayout>        
+        
+	<LinearLayout
+			android:layout_width="0dp"
+		    android:layout_height="wrap_content"
+		    android:layout_weight="1"
+
+		    android:gravity="center|center_vertical"
+			>        
+        <Button
+	    android:id="@+id/home_allnotes"
+		android:text="All Notes"
+		android:textStyle="bold"
+		android:textColor="@color/Black"	    
+	    android:background="@android:color/transparent"
+       	android:drawableTop="@drawable/allnotes3"
+	    android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:paddingTop="5dp"
+		android:onClick="onClickAllnotes"
+		>
+        </Button>
+	</LinearLayout>
+
+
+	<LinearLayout
+			android:layout_width="0dp"
+		    android:layout_height="wrap_content"
+		    android:layout_weight="1"
+
+		    android:gravity="center|center_vertical"
+			>        
+        <Button
+	        android:id="@+id/home_notebooks"
+	        android:text="Notebooks"
+	        android:textColor="@color/Black"
+			android:textStyle="bold"
+	        android:background="@android:color/transparent"
+        	android:drawableTop="@drawable/notebook2"
+	        android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:paddingTop="5dp"
+		    android:onClick="onClickNotebooks"
+		    >
+            </Button>
+	</LinearLayout>   
+    </LinearLayout>
+    <LinearLayout
+	     android:layout_height="wrap_content"
+	     android:layout_width="fill_parent"
+	     android:orientation="horizontal"
+	     android:layout_gravity="bottom"
+	     android:paddingTop="5px"
+	     android:background="@drawable/header">
+   </LinearLayout>
+</LinearLayout>

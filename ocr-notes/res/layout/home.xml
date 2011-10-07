@@ -65,19 +65,19 @@
 			android:onClick="onClickCreate"
 			>
 	        </Button>        
-          <Button
-	        android:id="@+id/home_notebooks"
-	        android:text="Notebooks"
-	        android:textColor="@color/Black"
-			android:textStyle="bold"
-	        android:background="@android:color/transparent"
-        	android:drawableTop="@drawable/notebook2"
-	        android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
-		    android:paddingTop="5dp"
-		    android:onClick="onClickNotebooks"
-		    >
-            </Button>
+        <Button
+	    android:id="@+id/home_allnotes"
+		android:text="All Notes"
+		android:textStyle="bold"
+		android:textColor="@color/Black"	    
+	    android:background="@android:color/transparent"
+       	android:drawableTop="@drawable/allnotes3"
+	    android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:paddingTop="5dp"
+		android:onClick="onClickAllnotes"
+		>
+        </Button>
 		</LinearLayout>
 	<LinearLayout
       android:layout_height="fill_parent"
@@ -100,20 +100,21 @@
 		android:paddingBottom="5dp"
 		android:onClick="onClickDoodle"
 		>
-        </Button>        
-      <Button
-	    android:id="@+id/home_tags"
-		android:text="Tags"
-		android:textStyle="bold"
-		android:textColor="@color/Black"	    
-	    android:background="@android:color/transparent"
-       	android:drawableTop="@drawable/tagnote3"
-	    android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:paddingTop="5dp"
-		android:onClick="onClickTags"
-		>
         </Button>
+      <Button
+	        android:id="@+id/home_notebooks"
+	        android:text="Notebooks"
+	        android:textColor="@color/Black"
+			android:textStyle="bold"
+	        android:background="@android:color/transparent"
+        	android:drawableTop="@drawable/notebook2"
+	        android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:paddingTop="5dp"
+		    android:onClick="onClickNotebooks"
+		    >
+            </Button>        
+      
 	</LinearLayout>
 	
 	
