@@ -1,10 +1,12 @@
 package com.plug.database.models;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Note {
 
-	private long id;
-	private String title;
-	private String content;
+	@SerializedName("id") 			private long id;
+	@SerializedName("title") 		private String title;
+	@SerializedName("content") 	private String content;
 		
 	private String getTitle() {
 		return title;
