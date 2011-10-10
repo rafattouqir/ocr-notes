@@ -9,8 +9,8 @@ import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
 import android.util.Log;
 
-public  class ImageWriter {
-	private static final String TAG = ImageWriter.class.getSimpleName();
+public  class SaveAsImage {
+	private static final String TAG = SaveAsImage.class.getSimpleName();
 
 
 	public static boolean writeAsJPG( Context context, Bitmap bitmap, String filename){

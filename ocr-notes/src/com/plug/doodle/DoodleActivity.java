@@ -55,10 +55,10 @@ public class DoodleActivity extends Activity{
 	public boolean onOptionsItemSelected(MenuItem item) {
 	    // Handle item selection
 	    switch (item.getItemId()) {
-	    case R.id.save:
+	    case R.id.doodle_save:
 	    	
 	    	bitmap = doodleView.getBitmap();
-	    	ImageWriter.writeAsJPG(DoodleActivity.this, bitmap, "doodle");
+	    	SaveAsImage.writeAsJPG(DoodleActivity.this, bitmap, "doodle");
 	    	
 	    	Toast.makeText(this, "Saved successfully.", Toast.LENGTH_LONG).show();
 	    	
@@ -66,7 +66,7 @@ public class DoodleActivity extends Activity{
 	    	startActivity(new Intent(DoodleActivity.this, HomeActivity.class));
 	    	//saveDoodle(doodleView);
 	        return true;
-	    case R.id.clear:
+	    case R.id.doodle_clear:
 	    	doodleView.clear();
 	        return true;
 	    default:
@@ -76,7 +76,7 @@ public class DoodleActivity extends Activity{
 
 	@Override
 	public void onBackPressed() {
-		// TODO Auto-generated method stub
+		this.finish();
 		super.onBackPressed();
 	}
 	
