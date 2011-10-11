@@ -17,7 +17,7 @@
     android:layout_height="wrap_content">
     </TextView>
 	 <ListView 
-    android:layout_height="ill_parent" 
+    android:layout_height="fill_parent" 
     android:id="@+id/wordsList" 
     android:layout_width="fill_parent">
     </ListView>
