@@ -1,6 +1,6 @@
 package com.plug.database.models;
 
-import android.text.format.Time;
+import java.sql.Timestamp;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -9,12 +9,12 @@ public class Note {
 	@SerializedName("id") 								private long id;
 	@SerializedName("title") 							private String title;
 	@SerializedName("content") 						private String content;
-	@SerializedName("created_at") 				private Time created;
-	@SerializedName("updated_at")					private Time updated;	
+	@SerializedName("created_at") 				private Timestamp created;
+	@SerializedName("updated_at")					private Timestamp updated;	
 	
 	private boolean isUploaded = false;
 	
-	public Note(String title, String content, Time created, Time updated) {
+	public Note(String title, String content, Timestamp created, Timestamp updated) {
 	  this.title = title;
 	  this.content = content;
 	  this.created = created;
@@ -24,7 +24,7 @@ public class Note {
 	public Note() {
   }
 
-	public Note(long id, String title, String content, Time created, Time updated) {
+	public Note(long id, String title, String content, Timestamp created, Timestamp updated) {
 	  this.id = id;
 	  this.title = title;
 	  this.content = content;
@@ -32,27 +32,27 @@ public class Note {
 	  this.updated = updated;
   }
 
-	private String getTitle() {
+	public String getTitle() {
 		return title;
 	}
 	
-	private void setTitle(String title) {
+	public void setTitle(String title) {
 		this.title = title;
 	}
 	
-	private String getContent() {
+	public String getContent() {
 		return content;
 	}
 	
-	private void setContent(String content) {
+	public void setContent(String content) {
 		this.content = content;
 	}
 	
-	private long getId() {
+	public long getId() {
 		return id;
 	}
 	
-	private void setId(long id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -64,19 +64,28 @@ public class Note {
   	this.isUploaded = isUploaded;
   }
 	
-	public void setCreated(Time created) {
+	public void setCreated(Timestamp created) {
 		this.created = created;
 	}
 	
-	public Time getCreated() {
+	public Timestamp getCreated() {
 		return created;
 	}
 	
-	public void setUpdated(Time updated) {
+	public void setUpdated(Timestamp updated) {
 		this.updated = updated;
 	}
 	
-	public Time getUpdated() {
+	public Timestamp getUpdated() {
 		return updated;
+	}
+	
+	/** Custom methods */
+	public String getCreatedAt() {
+		return created.toGMTString();
+	}
+	
+	public String getUpdatedAt() {
+		return updated.toGMTString();
 	}
 }
