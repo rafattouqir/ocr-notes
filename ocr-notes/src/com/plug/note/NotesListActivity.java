@@ -1,5 +1,7 @@
 package com.plug.note;
 
+import java.util.List;
+
 import keendy.projects.R;
 import android.app.ListActivity;
 import android.content.Intent;
@@ -12,6 +14,8 @@ import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
 import com.plug.database.DatabaseAdapter;
+import com.plug.database.models.Note;
+import com.plug.database.providers.NotesProvider;
 
 public class NotesListActivity extends ListActivity {
 
@@ -22,6 +26,7 @@ public class NotesListActivity extends ListActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
 		
 		loadList();
   }
@@ -49,9 +54,23 @@ public class NotesListActivity extends ListActivity {
   private void loadList() {
 		DatabaseAdapter dbAdapter  = new DatabaseAdapter(this);
 		dbAdapter.open();
-		
+  	
 		mCursor = dbAdapter.getAllNotes();	
-		
+		NotesProvider provider = null;
+		try {
+  		provider = NotesProvider.getInstance(this);
+  		List<Note> notes = provider.findAll();
+  		
+  		for(Note note : notes) {
+  			Log.i(TAG, "------==== NOTE ====-------");
+  			Log.i(TAG, note.getTitle());
+  			Log.i(TAG, note.getContent());
+  			Log.i(TAG, note.getCreatedAt());
+  			Log.i(TAG, note.getUpdatedAt());
+  		}
+		} finally {
+			provider.db().close();
+		}
 		startManagingCursor(mCursor);
 	
 		String[] column = {DatabaseAdapter.KEY_NOTE_TITLE};

@@ -5,6 +5,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
+import java.sql.Timestamp;
+import java.util.Calendar;
 
 import keendy.projects.R;
 
@@ -41,7 +43,10 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.plug.PlugApplication;
 import com.plug.database.DatabaseAdapter;
+import com.plug.database.models.Note;
+import com.plug.database.providers.NotesProvider;
 
 /**
  * 
@@ -57,7 +62,7 @@ public class NoteEditorActivity extends Activity implements OnClickListener{
   private static final int STATE_EDIT = 0;
   private static final int STATE_INSERT = 1;
 
-private static final int PIC_RESULT = 0;
+  private static final int PIC_RESULT = 0;
   
   /** our variables worth noting :) */
   private EditText noteView;
@@ -216,6 +221,17 @@ private static final int PIC_RESULT = 0;
   private long save(String title, String content) {
 		long id = -1;
 		if(!content.equals("")) {
+			Timestamp timestamp = new Timestamp(Calendar.getInstance().getTimeInMillis());
+    	Note note = new Note(title, content, timestamp, timestamp);
+    	
+    	NotesProvider provider = null;
+    	try {
+      	provider = NotesProvider.getInstance(this);
+      	provider.store(note);
+    	} finally {
+      	provider.db().close();
+    	}
+    
 		  DatabaseAdapter database = new DatabaseAdapter(this);
 		  database.open();
 		  id = database.createNote(title, content);
