@@ -1,6 +1,7 @@
 package com.plug.database;
 
 import java.io.IOException;
+import java.sql.Timestamp;
 
 import android.content.Context;
 import android.util.Log;
@@ -19,10 +20,14 @@ public class Db4oHelper {
 	private static ObjectContainer oc = null;
 	private Context context;
 	
-	private ObjectContainer db() {
+	public Db4oHelper(Context context) {
+		this.context = context;
+	}
+	
+	public ObjectContainer db() {
 		try{
 			if( oc == null || oc.ext().isClosed()){
-				oc = Db4oEmbedded.openFile(dbConfig(), DATABASE_NAME);
+				oc = Db4oEmbedded.openFile(dbConfig(), context.getDir("databases", 0)+"/"+DATABASE_NAME);
 			}
 			return oc;
 		} catch (Exception e ) {
@@ -33,13 +38,14 @@ public class Db4oHelper {
 	
 	private EmbeddedConfiguration dbConfig() throws IOException {
     EmbeddedConfiguration configuration = Db4oEmbedded.newConfiguration();
-    configuration.common().objectClass(Note.class).objectField("id").indexed(true);
-    configuration.common().objectClass(Note.class).cascadeOnUpdate(true);
-    configuration.common().objectClass(Note.class).cascadeOnActivate(true);
+//    configuration.common().objectClass(Note.class).objectField("id").indexed(true);
+//    configuration.common().objectClass(Note.class).cascadeOnUpdate(true);
+//    configuration.common().objectClass(Note.class).cascadeOnActivate(true);
+    configuration.common().objectClass(Note.class).storeTransientFields(true);
     return configuration;
   }
 	
 	public String db4oDBFullPath(Context ctx) {
-		return ctx.getDir("data", 0) + "/" + "android.db4o";
+		return ctx.getDir("databases", 0) + "/" + DATABASE_NAME;
 	}
 }
