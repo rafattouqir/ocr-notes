@@ -1,17 +1,30 @@
 package com.plug;
 
+import java.util.List;
+
 import android.app.Application;
 
-public class PlugApplication extends Application {
-	
-	private String currentUser;
+import com.plug.database.models.Note;
 
-	private String getCurrentUser() {
+public class PlugApplication extends Application {
+			
+	private String currentUser;
+	private Note currentNote;
+
+	public String getCurrentUser() {
 		return currentUser;
 	}
 
-	private void setCurrentUser(String currentUser) {
+	public void setCurrentUser(String currentUser) {
 		this.currentUser = currentUser;
 	}
 
+	private Note getCurrentNote() {
+		return currentNote;
+	}
+
+	private void setCurrentNote(Note currentNote) {
+		this.currentNote = currentNote;
+	}
+	
 }
