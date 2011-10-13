@@ -13,12 +13,15 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
+import com.plug.PlugApplication;
 import com.plug.database.DatabaseAdapter;
 import com.plug.database.models.Note;
 import com.plug.database.providers.NotesProvider;
 
 public class NotesListActivity extends ListActivity {
 
+	private PlugApplication application;
+	
   private static final String TAG = "List Activity: ";
   
   private Cursor mCursor;
@@ -26,7 +29,7 @@ public class NotesListActivity extends ListActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
+		application = (PlugApplication) getApplicationContext();
 		
 		loadList();
   }
@@ -56,7 +59,7 @@ public class NotesListActivity extends ListActivity {
 		dbAdapter.open();
   	
 		mCursor = dbAdapter.getAllNotes();	
-		NotesProvider provider = null;
+  	NotesProvider provider = application.getNotesProvider();
 		try {
   		provider = NotesProvider.getInstance(this);
   		List<Note> notes = provider.findAll();
@@ -69,7 +72,7 @@ public class NotesListActivity extends ListActivity {
   			Log.i(TAG, note.getUpdatedAt());
   		}
 		} finally {
-			provider.db().close();
+			
 		}
 		startManagingCursor(mCursor);
 	

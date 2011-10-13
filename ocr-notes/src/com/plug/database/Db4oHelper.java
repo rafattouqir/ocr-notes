@@ -1,12 +1,14 @@
 package com.plug.database;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.sql.Timestamp;
 
 import android.content.Context;
 import android.util.Log;
 
 import com.db4o.Db4oEmbedded;
+import com.db4o.EmbeddedObjectContainer;
 import com.db4o.ObjectContainer;
 import com.db4o.config.EmbeddedConfiguration;
 import com.plug.database.models.Note;
@@ -17,7 +19,7 @@ public class Db4oHelper {
 	
 	private static final String DATABASE_NAME = "plug.db4o";
 	
-	private static ObjectContainer oc = null;
+	private static EmbeddedObjectContainer oc = null;
 	private Context context;
 	
 	public Db4oHelper(Context context) {
@@ -42,6 +44,8 @@ public class Db4oHelper {
 //    configuration.common().objectClass(Note.class).cascadeOnUpdate(true);
 //    configuration.common().objectClass(Note.class).cascadeOnActivate(true);
     configuration.common().objectClass(Note.class).storeTransientFields(true);
+    configuration.common().objectClass(Date.class).storeTransientFields(true);   
+    configuration.common().objectClass(Timestamp.class).storeTransientFields(true);
     return configuration;
   }
 	

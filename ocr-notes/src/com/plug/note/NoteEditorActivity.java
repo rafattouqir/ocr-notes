@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.sql.Timestamp;
-import java.util.Calendar;
 
 import keendy.projects.R;
 
@@ -46,7 +45,6 @@ import android.widget.EditText;
 import com.plug.PlugApplication;
 import com.plug.database.DatabaseAdapter;
 import com.plug.database.models.Note;
-import com.plug.database.providers.NotesProvider;
 
 /**
  * 
@@ -56,6 +54,8 @@ import com.plug.database.providers.NotesProvider;
  */
 public class NoteEditorActivity extends Activity implements OnClickListener{
 
+	private PlugApplication application;
+	
   private static String TAG = "Note Editor";
   
   /**  Different states this note editor may enter */
@@ -111,7 +111,7 @@ public class NoteEditorActivity extends Activity implements OnClickListener{
   
   public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
+		application = (PlugApplication) getApplicationContext();
 		/** Get the intent (either insert new note or edit existing */
 		final Intent intent = getIntent();
 		String action = intent.getAction();
@@ -221,17 +221,22 @@ public class NoteEditorActivity extends Activity implements OnClickListener{
   private long save(String title, String content) {
 		long id = -1;
 		if(!content.equals("")) {
-			Timestamp timestamp = new Timestamp(Calendar.getInstance().getTimeInMillis());
-    	Note note = new Note(title, content, timestamp, timestamp);
-    	
-    	NotesProvider provider = null;
-    	try {
-      	provider = NotesProvider.getInstance(this);
-      	provider.store(note);
-    	} finally {
-      	provider.db().close();
-    	}
-    
+			java.util.Date date = new java.util.Date(System.currentTimeMillis()-(24*3600*1000)); 
+			Timestamp timestamp = new Timestamp(date.getTime());
+			Note note = new Note(title, content, timestamp);
+			
+			try {
+  			application.getNotesProvider().store(note);
+  			for ( Note currentNote : application.getNotesProvider().findAll()) {
+  				Log.i(TAG, currentNote.getTitle());
+   				Log.i(TAG, currentNote.getContent()); 				
+   				Log.i(TAG, currentNote.getCreatedAt());  				
+  				Log.i(TAG, currentNote.getUpdatedAt());
+  			}
+			} finally {
+				
+			}
+			
 		  DatabaseAdapter database = new DatabaseAdapter(this);
 		  database.open();
 		  id = database.createNote(title, content);
