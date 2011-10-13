@@ -14,22 +14,22 @@ public class Note {
 	
 	private boolean isUploaded = false;
 	
-	public Note(String title, String content, Timestamp created, Timestamp updated) {
+	public Note(String title, String content, Timestamp timestamp) {
 	  this.title = title;
 	  this.content = content;
-	  this.created = created;
-	  this.updated = updated;
+	  this.created = timestamp;
+	  this.updated = timestamp;
   }
 
 	public Note() {
   }
 
-	public Note(long id, String title, String content, Timestamp created, Timestamp updated) {
+	public Note(long id, String title, String content, Timestamp timestamp) {
 	  this.id = id;
 	  this.title = title;
 	  this.content = content;
-	  this.created = created;
-	  this.updated = updated;
+	  this.created = timestamp;
+	  this.updated = timestamp;
   }
 
 	public String getTitle() {
